@@ -16,9 +16,11 @@ To be able to use it for your project you need to provide following file structu
 * *makefile* This makefile.
 
 Following files/folders will be generated automatically by this makefile:
-* *Tmp* Stores all generated object files
-* *NameOfExecutable* Your final executable file. The name depending on the project title.
-* *NameOfExecutableTest* Unit test executable file. Also here the name depends on the project title, only the term "Test" will be append to the title.
+
+| Name | Description |
+| *Tmp* | Stores all generated object files. |
+| *NameOfExecutable* | Your final executable file. The name depending on the project title. |
+| *NameOfExecutableTest* | Unit test executable file. Also here the name depends on the project title, only the term "Test" will be append to the title. |
                            
 ###Options
 Following options are available:
