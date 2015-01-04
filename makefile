@@ -80,7 +80,7 @@ LINKER_SETTINGS =
 
 # common and link specific configuration for the unit test executable
 COMMON_TEST_SETTINGS = -D_UNITTEST $(COMMON_SETTINGS)
-LINKER_TEST_SETTINGS = 
+LINKER_TEST_SETTINGS = -lcppunit
 		
 ##
 # CHANGES AREN'T NECESSARY FOR ANYTHING BELOW THIS LINE!
