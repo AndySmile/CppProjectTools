@@ -62,7 +62,7 @@ APP_TITLE = NameOfExecutable
 # list of all common source files which have to be defined for creating the
 # main executable as well as the unit test executable
 # example:
-#	Tmp/YourMainFile.o - this is the path to the resulting object file of the file Src/YourMainFile.cpp
+#	Tmp/YourMainFile.o - this is the path to the resulting object file of the source file Src/YourMainFile.cpp
 LIST_OBJECTS_COMMON =	
 
 # list of all files which are only necessary for the final executable
