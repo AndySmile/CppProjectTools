@@ -20,7 +20,7 @@ In case you want to use unit testing, you have to install CppUnit:
 
 To able to use the experimental memory check option you need to have Valgrind installed:
 
-**Vallgrind:** [http://valgrind.org/](http://valgrind.org/)
+**Valgrind:** [http://valgrind.org/](http://valgrind.org/)
 
 ###File And Folder Structure
 
