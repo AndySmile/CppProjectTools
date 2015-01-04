@@ -9,6 +9,17 @@ This is a simple makefile which can be used for each common C++ project that cre
 You only have to put this file into your project, define some options within the makefile which are related
 to your project and you're ready to go. Here some details:
 
+###Requirements
+
+As long as you have the GNU compiler and GNU make installed everything might be ready that you're able to
+compile your project.
+
+In case you want to use unit testing, you have to install CppUnit:
+**CppUnit v1.12.1** [http://sourceforge.net/projects/cppunit/](http://sourceforge.net/projects/cppunit/)
+
+To able to use the experimental memory check option you need to have Valgrind installed:
+**Vallgrind** [http://valgrind.org/](http://valgrind.org/)
+
 ###File And Folder Structure
 
 To be able to use it for your project you need to provide following file structure:
