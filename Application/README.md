@@ -1,10 +1,10 @@
-#C++ Makefile
+# C++ Makefile
 
 This is a simple makefile which can be used for each common C++ project that creates a final executable.
 You only have to put this file into your project, define some options within the makefile which are related
 to your project and you're ready to go. Here some details:
 
-###Requirements
+### Requirements
 
 As long as you have the GNU compiler and GNU make installed everything might be ready that you're able to
 compile your project.
@@ -17,10 +17,10 @@ To able to use the experimental memory check option you need to have Valgrind in
 
 **Valgrind:** [http://valgrind.org/](http://valgrind.org/)
 
-###File And Folder Structure
+### File And Folder Structure
 
 To be able to use it for your project you need to provide following file structure:
-* **Src**
+* **Source**
 	* Stores all header and source files, it's also possible to store your header files in a separated folder, you have to change the common compiler settings that the compiler still knows where it finds those files.
 * **makefile** 
 	* This makefile.
@@ -34,9 +34,9 @@ Following files/folders will be generated automatically by this makefile:
 * **NameOfExecutableTest**
 	* Unit test executable file. Also here the name depends on the project title, only the term "Test" will be append to the title.
                            
-###Options
+### Options
 Following options are available:
-* **build-executable** 
+* **build** 
 	* Default option which will be executed in case of no parameter were defined for this makefile. It compiles all source file to the final executable.
 * **test** 
 	* Compiles source files, including testing source files to unit test executable which will perform all test suites. For this it's necessary that CppUnit is installed!

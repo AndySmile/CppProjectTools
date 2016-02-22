@@ -3,7 +3,7 @@
 #
 # This makefile is build for C++ project based on GNU compiler.
 # To be able to use it for your project you need to provide following file structure:
-#   - Src       -> stores all header and source files, it's also possible to store your header
+#   - Source    -> stores all header and source files, it's also possible to store your header
 #                  files in a separated folder, you have to change the common compiler settings
 #                  that the compiler still knows where it finds those files
 #   - makefile  -> this makefile
@@ -15,7 +15,7 @@
 #                              only the term "Test" will be append to the title.
 #
 # Following options are available:
-#   - build-executable  -> Default option which will be executed in case of no parameter were defined for this makefile.
+#   - build  			-> Default option which will be executed in case of no parameter were defined for this makefile.
 #                          It compiles all source file to the final executable.
 #   - test              -> Compiles source files, including testing source files to unit test executable which will
 #                          perform all test suites. For this it's necessary that CppUnit is installed!
@@ -27,7 +27,7 @@
 #
 #   The MIT License (MIT)
 #
-#   Copyright (c) 2013-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+#   Copyright (c) 2013-2016 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
 #
 #   Permission is hereby granted, free of charge, to any person obtaining a copy
 #   of this software and associated documentation files (the "Software"), to deal
@@ -47,13 +47,13 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #   THE SOFTWARE.
 #
-# @author       Andy Liebke<coding@andysmiles4games.com>
-# @version      1.6.1 04-Jan-15
-# @copyright    Copyright (c) 2013-2015 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
+# @author       Andy Liebke <coding@andysmiles4games.com>
+# @version      1.7.0 22-Feb-16
+# @copyright    Copyright (c) 2013-2016 by Andy Liebke. All rights reserved. (http://andysmiles4games.com)
 #
 
 ##
-# OPTIONS WHICH HAVE TO BE DEFINED PER EACH PROJECT!
+# OPTIONS YOU HAVE TO BE DEFINED IN EACH PROJECT!
 #	
 
 # title of the executable
@@ -62,7 +62,7 @@ APP_TITLE = NameOfExecutable
 # list of all common source files which have to be defined for creating the
 # main executable as well as the unit test executable
 # example:
-#	Tmp/YourMainFile.o - this is the path to the resulting object file of the source file Src/YourMainFile.cpp
+#	Tmp/YourMainFile.o - this is the path to the resulting object file of the source file Source/YourMainFile.cpp
 LIST_OBJECTS_COMMON =	
 
 # list of all files which are only necessary for the final executable
@@ -74,35 +74,42 @@ LIST_OBJECTS_TEST =
 # debugging options
 DEBUG_SETTINGS = -g -D_DEBUG
 
-# common and linker specific configuration for the executable
-COMMON_SETTINGS = $(DEBUG_SETTINGS) -Weffc++ -Wall -I Src/
+# common and linker specific configuration
+COMMON_SETTINGS = $(DEBUG_SETTINGS) -Weffc++ -Wall -I Source/
 LINKER_SETTINGS = 
 
 # common and link specific configuration for the unit test executable
 COMMON_TEST_SETTINGS = -D_UNITTEST $(COMMON_SETTINGS)
 LINKER_TEST_SETTINGS = -lcppunit
+
+##
+# CHANGE THOSE SETTINGS ONLY IF YOU WORK IN A DIFFERENT DEVELOPMENT ENVIRONMENT!
+#
+CONFIG_COMPILER = g++
 		
 ##
 # CHANGES AREN'T NECESSARY FOR ANYTHING BELOW THIS LINE!
 #		
 		
-.PHONY: build-executable
-build-executable: $(LIST_OBJECTS_COMMON) $(LIST_OBJECTS_APP)
-	g++ $(COMMON_SETTINGS) $(LINKER_SETTINGS) -o $(APP_TITLE) $^
+.PHONY: build
+build: $(LIST_OBJECTS_COMMON) $(LIST_OBJECTS_APP)
+	$(CONFIG_COMPILER) $(COMMON_SETTINGS) $(LINKER_SETTINGS) -o $(APP_TITLE) $^
+	@echo ">>> DONE!"
 	
-Tmp/Test/%.o: Src/Test/%.cpp
+Tmp/Test/%.o: Source/Test/%.cpp
 	@mkdir -p $(dir $@)
-	g++ $(COMMON_TEST_SETTINGS) -c $^ -o $@
+	$(CONFIG_COMPILER) $(COMMON_TEST_SETTINGS) -c $^ -o $@
 
-Tmp/%.o: Src/%.cpp
+Tmp/%.o: Source/%.cpp
 	@mkdir -p $(dir $@)
-	g++ $(COMMON_SETTINGS) -c $^ -o $@ 
+	$(CONFIG_COMPILER) $(COMMON_SETTINGS) -c $^ -o $@ 
 
 .PHONY: test
 test: $(LIST_OBJECTS_COMMON) $(LIST_OBJECTS_TEST) 
-	@g++ $(COMMON_TEST_SETTINGS) $(LINKER_SETTINGS) $(LINKER_TEST_SETTINGS) -o $(APP_TITLE)Test $^
-	@echo "Running test cases..."
+	$(CONFIG_COMPILER) $(COMMON_TEST_SETTINGS) $(LINKER_SETTINGS) $(LINKER_TEST_SETTINGS) -o $(APP_TITLE)Test $^
+	@echo ">>> Running unit tests..."
 	@./$(APP_TITLE)Test
+	@echo ">>> DONE!"
 
 .PHONY: start
 start:

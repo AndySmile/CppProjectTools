@@ -1,0 +1,17 @@
+{
+	"version": "0.1.0",
+	"command": "make",
+	"isShellCommand": true,
+	"tasks": [
+		{
+			"taskName": "build",
+			"isBuildCommand": true,
+			"showOutput": "always"
+		},
+        {
+			"taskName": "start",
+			"isTestCommand": true,
+			"showOutput": "always"
+		}
+	]
+}
